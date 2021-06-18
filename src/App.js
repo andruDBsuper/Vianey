@@ -30,11 +30,16 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+
+
         {/* Si el usuario esta loggeado voy a Home sino Login */}
         {this.state.user ? (<Home />) :(<Login/>)}
       </div>
+      
     );
   }
+  
 }
+
 
 export default App;

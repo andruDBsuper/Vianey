@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from 'react';
 import fire from "./config/Fire";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 export default class Login extends Component {
   usuario = React.createRef();
@@ -39,33 +41,40 @@ export default class Login extends Component {
   }
 
   render() {
+
+    const captcha = (null);
+
+    const onChange = () => {
+      console.log(captcha.current.getValue())
+      
+    }
+
     return (
-      <div>
-        <form>
-          <div>
-            <label htmlFor="exampleInputEmail">Correo electronico: </label>
-            <input
-              type="email"
-              name="email"
-              id="exampleInputEmail"
-              ref={this.usuario}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="exampleInputPassword">Contraseña: </label>
-            <input
-              type="password"
-              name="password"
-              id="exampleInputPassword"
-              ref={this.contraseña}
-            ></input>
-          </div>
-          <button type="submit" onClick={this.login}>
-            Login
-          </button>
+      
+        
+        <div className="contenedor">
+			<div className="registrate">
+				<h1>Registrate</h1>
+				<form className="formulario" action="" >
+					<input type="text" name="usuario" id="usuario" placeholder="Usuario" ref={this.usuario} />
+					<input type="password" name="password" id="password" placeholder="Contraseña" ref={this.contraseña} />
+					
+					<div className="recaptcha">
+            <ReCAPTCHA
+            ref={captcha}
+            sitekey="6Ldu-TYbAAAAAOfNKiSzjp97sUGD1DMaOtf_ccKM"
+            onChange={onChange}
+            />
+					</div>
+					<button type="submit"  onClick={this.login} >Iniciar Sesion</button>
+          <br/>
           <button onClick={this.signup}>Registrarse</button>
-        </form>
-      </div>
+				</form>
+			</div>
+			
+		</div>
+        
+      
     );
   }
 }
